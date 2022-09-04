@@ -159,7 +159,7 @@ Output :
 1. if you provide both `ratio` and `wordCount` parameters, the `ratio` will be used and `wordCount` will be ignored
 2. if you provide a ratio equal to zero or a non-float ratio, then  the default value of 0.2 will be used
 3. if you provide a word count equal to zero or a non-int word count, then  the default value of 10 will be used
-## 3. testing the code
+## 3. Test the code
 Run the following command :
 ```
 $ poetry run pytest
