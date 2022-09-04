@@ -1,0 +1,9 @@
+.coverage
+.flake8
+.mypy_cache
+.pytest_cache
+.venv
+poetry.lock
+pyproject.toml
+sample_text.txt
+schema.sql
