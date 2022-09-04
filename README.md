@@ -85,4 +85,21 @@ The API implements the following 3 features :
 3. get a summary of the text corresponding to a text id via a `GET` call to the `/texts/{textId}/summarize` service
 
 
+### sample requests : 1- store and retrieve text
 
+Once you run the API using instructions from section 1. you can try out the following requests :
+```
+$ curl -d "text=Hello, world !" -X POST http://localhost:5000/store-text-and-get-id
+```
+Output:
+```
+{"textId":"da1180d4c2cec7514b8f9707719e6fce5d872e393860b54a848b4060a8463a7c"}
+```
+You can retrieve the text you just saved using the following `GET` call:
+```
+$ curl http://localhost:5000/texts/da1180d4c2cec7514b8f9707719e6fce5d872e393860b54a848b4060a8463a7c
+```
+Output:
+```
+{"text":"Hello, world !","textId":"da1180d4c2cec7514b8f9707719e6fce5d872e393860b54a848b4060a8463a7c"}
+```
