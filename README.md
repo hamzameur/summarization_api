@@ -7,7 +7,9 @@ Typical workflow:
 2. send a `GET` request to retrieve the text corresponding to a text id
 3. send a `GET` request to get a summary of the text corresponding to a text id
 
-## Start the API
+For the summarization service the API uses the gensim implemetation of TextRank algorithm (extractive summarization). See documentation here : https://radimrehurek.com/gensim_3.8.3/auto_examples/tutorials/run_summarization.html
+
+## 1. Start the API
 
 First you need to clone this project :
 
@@ -41,7 +43,7 @@ $ poetry install
 Once the environment is installed, you can run the following commands to run the api (feel free to change the port):
 ```
 $ export FLASK_APP=summarization_api/views.py
-$ poetry run python -m flask run --host=0.0.0.0 --port=7325
+$ poetry run python -m flask run --host=0.0.0.0 --port=5000
 ```
 You will see the following output :
 ```
@@ -49,8 +51,8 @@ You will see the following output :
 * Debug mode: off
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
 * Running on all addresses (0.0.0.0)
-* Running on http://127.0.0.1:7325
-* Running on http://192.168.1.83:7325
+* Running on http://127.0.0.1:5000
+* Running on http://192.168.1.83:5000
 Press CTRL+C to quit
 ```
 
@@ -62,7 +64,7 @@ $ export FLASK_APP=summarization_api/views.py
 $ python3 -m venv env
 $ source env/bin/activate
 $ python -m pip install -r requirements.txt
-$ python -m flask run --host=0.0.0.0 --port=7325
+$ python -m flask run --host=0.0.0.0 --port=5000
 ```
 You will see the following output :
 ```
@@ -70,7 +72,17 @@ You will see the following output :
 * Debug mode: off
 WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
 * Running on all addresses (0.0.0.0)
-* Running on http://127.0.0.1:7325
-* Running on http://192.168.1.83:7325
+* Running on http://127.0.0.1:5000
+* Running on http://192.168.1.83:5000
 Press CTRL+C to quit
 ```
+## 2. Use the API
+
+The API implements the following 3 features : 
+
+1. store text in a database and get a text id via a `POST` call to the `/store-text-and-get-id` service. You should provide the text in the `text` parameter in the form.
+2. retrieve the text corresponding to a text id via a `GET` call to the `/texts/{textId}` service
+3. get a summary of the text corresponding to a text id via a `GET` call to the `/texts/{textId}/summarize` service
+
+
+
