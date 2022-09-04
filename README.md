@@ -54,4 +54,23 @@ WARNING: This is a development server. Do not use it in a production deployment.
 Press CTRL+C to quit
 ```
 
+### virtualenv
 
+If you use virtualenv you can run the following commands in the `summarization_api` directory (python version 3.8.11:
+```
+$ export FLASK_APP=summarization_api/views.py
+$ python3 -m venv env
+$ source env/bin/activate
+$ python -m pip install -r requirements.txt
+$ python -m flask run --host=0.0.0.0 --port=7325
+```
+You will see the following output :
+```
+* Serving Flask app 'summarization_api/views.py'
+* Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+* Running on all addresses (0.0.0.0)
+* Running on http://127.0.0.1:7325
+* Running on http://192.168.1.83:7325
+Press CTRL+C to quit
+```
