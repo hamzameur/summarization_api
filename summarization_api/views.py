@@ -35,7 +35,7 @@ def handle_api_error(e: SummarizationApiException):
     return jsonify(e.build_message()), e.code
 
 
-@app.route("/store-text-and-get-id", methods=["POST"])
+@app.route("/texts", methods=["POST"])
 def store_text_and_get_id():
     if KEY_TEXT not in request.form:
         raise SummarizationApiException(

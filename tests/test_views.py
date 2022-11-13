@@ -34,7 +34,7 @@ def test_store_text_and_get_id():
     reset_mock_db()
     with patch("summarization_api.views.TEXT_HANDLER", MOCK_TEXT_HANDLER):
         with app.test_client() as client:
-            resp = client.post("/store-text-and-get-id")
+            resp = client.post("/texts")
             assert resp.status_code == 400
             assert resp.json == {
                 "code": 400,
@@ -42,12 +42,12 @@ def test_store_text_and_get_id():
                 "description": "text to store is missing",
             }
 
-            resp = client.post("/store-text-and-get-id", data={"text": MOCK_TEXT})
+            resp = client.post("/texts", data={"text": MOCK_TEXT})
             assert resp.status_code == 200
             assert resp.json == {"textId": MOCK_TEXT_ID}
             # test idempotent behaviour
             assert client.post(
-                "/store-text-and-get-id", data={"text": MOCK_TEXT}
+                "/texts", data={"text": MOCK_TEXT}
             ).json == {"textId": MOCK_TEXT_ID}
 
     remove_mock_db_if_it_exists()
@@ -65,7 +65,7 @@ def test_get_text_from_id():
                 "description": f"No text stored under text id `{MOCK_TEXT_ID}`",
             }
 
-            resp = client.post("/store-text-and-get-id", data={"text": MOCK_TEXT})
+            resp = client.post("/texts", data={"text": MOCK_TEXT})
             assert resp.status_code == 200
             assert resp.json == {"textId": MOCK_TEXT_ID}
 
@@ -80,7 +80,7 @@ def test_summarize_short_text():
     reset_mock_db()
     with patch("summarization_api.views.TEXT_HANDLER", MOCK_TEXT_HANDLER):
         with app.test_client() as client:
-            resp = client.post("/store-text-and-get-id", data={"text": HELLO_TEXT})
+            resp = client.post("/texts", data={"text": HELLO_TEXT})
             assert resp.status_code == 200
             assert resp.json == {"textId": HELLO_TEXT_ID}
 
@@ -108,7 +108,7 @@ def test_summarize_long_text():
                 "description": f"No text stored under text id `{MOCK_TEXT_ID}`",
             }
 
-            resp = client.post("/store-text-and-get-id", data={"text": MOCK_TEXT})
+            resp = client.post("/texts", data={"text": MOCK_TEXT})
             assert resp.status_code == 200
             assert resp.json == {"textId": MOCK_TEXT_ID}
 

@@ -80,7 +80,7 @@ Press CTRL+C to quit
 
 The API implements the following 3 features : 
 
-1. store text in a database and get a text id via a `POST` call to the `/store-text-and-get-id` service. You should provide the text in the `text` parameter in the form.
+1. store text in a database and get a text id via a `POST` call to the `/texts` service. You should provide the text in the `text` parameter in the form.
 2. retrieve the text corresponding to a text id via a `GET` call to the `/texts/{textId}` service
 3. get a summary of the text corresponding to a text id via a `GET` call to the `/texts/{textId}/summarize` service
 
@@ -89,7 +89,7 @@ The API implements the following 3 features :
 
 Once you run the API using instructions from section 1. you can try out the following requests :
 ```
-$ curl -d "text=Hello, world !" -X POST http://localhost:5000/store-text-and-get-id
+$ curl -d "text=Hello, world !" -X POST http://localhost:5000/texts
 ```
 Output:
 ```
@@ -109,7 +109,7 @@ Output:
 We have provided an example of a larger text in the `sample_text.txt` file for demo purposes :
 
 ```
-$ curl -d "@sample_text.txt" -X POST http://localhost:5000/store-text-and-get-id
+$ curl -d "@sample_text.txt" -X POST http://localhost:5000/texts
 ```
 Output:
 ```
